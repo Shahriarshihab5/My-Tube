@@ -15,10 +15,21 @@ fetch('https://openapi.programming-hero.com/api/phero-tube/categories')
 
 // Create Display catagories
 
-const displayCatagories = (data)=>{
+const displayCatagories = (catagories)=>{
+const catagoryContainer = document.getElementById('categories')
 
-    console.log(data)
+    catagories.forEach((item)=>{
+        console.log(item)
+        // createButton
+  const button = document.createElement("button")
+    button.classList="btn";
+    button.innerText=item.category;
+//   add button to catagory
 
+
+catagoryContainer.append(button)
+
+    })
 }
 
 
