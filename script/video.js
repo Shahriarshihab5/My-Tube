@@ -21,6 +21,25 @@ for (let btn of buttons){
   btn.classList.remove('active');
 }
 }
+const loadDetails =async(videoId)=>{
+  const uri=`https://openapi.programming-hero.com/api/phero-tube/video/${videoId}`;
+  const res = await fetch(uri);
+  const data = await res.json();
+  displayDetails(data.video)
+}
+const displayDetails=(video)=>{
+console.log(video)
+const detailsContainer =document.getElementById('modelContent')
+detailsContainer.innerHTML=`<img src=${video.thumbnail}/>
+
+<p>
+${video.description}
+</p>
+`
+document.getElementById('showmodal').click()
+}
+
+
 
 const loadCatagories= () =>{
 
@@ -131,6 +150,12 @@ ${video.title}
 
 ${video.authors[0].verified == true?'<img class="w-5" src="https://img.icons8.com/?size=48&id=D9RtvkuOe31p&format=png">':""}
 
+<div>
+
+<p><button  onclick="loadDetails('${video.video_id}')" class="btn btn-sm btn-error">Details
+</button> </p>
+
+</div>
 
 </div>
 </div>
