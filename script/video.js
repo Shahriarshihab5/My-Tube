@@ -3,7 +3,16 @@
 
 
 // Create Load Catagories
+function getTimeString(time){
+  // get hour and rest seconds
+  const hour = parseInt(time/3600);
+  let remainigSecond = time%3600;
+  const minutes = parseInt(remainigSecond/60);
+  remainigSecond=remainigSecond%60;
 
+return `${hour}hour ${minutes} minutes ${remainigSecond} second ago`
+
+}
 const loadCatagories= () =>{
 
 fetch('https://openapi.programming-hero.com/api/phero-tube/categories')
@@ -57,6 +66,8 @@ card.innerHTML = ` <figure class="h-[200px] relative ">
       src=${video.thumbnail}
     class=h-full w-full object-cover
       alt="Shoes" />
+      ${video.others.posted_date?.length==0?"":`<span class='absolute right-2 bottom-2 bg-black rounded p-1 text-white'> ${getTimeString(video.others.posted_date)} </span>
+`}
 <span class='absolute right-2 bottom-2 bg-black rounded p-1 text-white'> ${video.others.posted_date} </span>
 
   </figure>
